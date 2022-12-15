@@ -62,16 +62,18 @@
         "vscode": {
             // Add the IDs of extensions you want installed when the container is created.
             "extensions": [
-                "ms-dotnettools.csharp",
-                "tintoy.msbuild-project-tools",
-                "formulahendry.dotnet-test-explorer",
-                "nikiforovall.surround-with-csharp",
-                "mhutchie.git-graph",
-                "codezombiech.gitignore",
-                "yzhang.markdown-all-in-one",
-                "dotjoshjohnson.xml",
-                "editorconfig.editorconfig"
-            ]
+				"ms-dotnettools.csharp",
+				"tintoy.msbuild-project-tools",
+				"formulahendry.dotnet-test-explorer",
+				"nikiforovall.surround-with-csharp",
+				"mhutchie.git-graph",
+				"codezombiech.gitignore",
+				"yzhang.markdown-all-in-one",
+				"dotjoshjohnson.xml",
+				"editorconfig.editorconfig",
+				"leo-labs.dotnet",
+				"fernandoescolar.vscode-solution-explorer"
+			]
         }
     },
     "remoteUser": "vscode"
