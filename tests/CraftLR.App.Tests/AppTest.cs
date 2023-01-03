@@ -1,5 +1,7 @@
 using Xunit;
 
+namespace CraftLR.App.Tests;
+
 public class AppTests
 {
     [Fact]

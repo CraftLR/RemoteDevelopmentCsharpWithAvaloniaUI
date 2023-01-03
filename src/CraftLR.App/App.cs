@@ -1,6 +1,8 @@
 using System;
 
-class Program
+namespace CraftLR.App;
+
+static class Program
 {
     static void Main()
     {
