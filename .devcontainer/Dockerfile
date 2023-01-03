@@ -1,4 +1,4 @@
-ARG VARIANT=7.0-bullseye
+ARG VARIANT=6.0-bullseye
 FROM mcr.microsoft.com/devcontainers/dotnet:0-${VARIANT}
 
 # [Choice] Node.js version: none, lts/*, 18, 16, 14
