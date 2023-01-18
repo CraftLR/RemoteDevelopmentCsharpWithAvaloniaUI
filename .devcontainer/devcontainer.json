@@ -68,14 +68,14 @@
         6080,
         5901
     ],
-    "updateContentCommand": {
+    "postCreateCommand": {
         "pmd": "brew install pmd",
         "coverlet": "dotnet tool install --global coverlet.console --configfile NuGet.Config",
         "reportgenerator": "dotnet tool install --global dotnet-reportgenerator-globaltool --configfile NuGet.Config",
-        "metrixpp": "pip install metrixpp",
+        "metrixpp": "pip install metrixpp"
     },
     // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "dotnet restore",
+    "postStartCommand": "dotnet restore",
     // Configure tool-specific properties.
     "customizations": {
         // Configure properties specific to VS Code.

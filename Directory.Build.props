@@ -11,4 +11,13 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
+
+    <ItemGroup>
+    <PackageReference
+      Include="SonarAnalyzer.CSharp"
+      Version="8.51.0.59060"
+      PrivateAssets="all"
+      Condition="$(MSBuildProjectExtension) == '.csproj'"
+    />
+  </ItemGroup>
 </Project>
