@@ -68,7 +68,7 @@
         6080,
         5901
     ],
-    "postStartCommand": {
+    "updateContentCommand": {
         "pmd": "brew install pmd",
         "coverlet": "dotnet tool install --global coverlet.console --configfile NuGet.Config",
         "reportgenerator": "dotnet tool install --global dotnet-reportgenerator-globaltool --configfile NuGet.Config",
@@ -92,7 +92,8 @@
                 "dotjoshjohnson.xml",
                 "editorconfig.editorconfig",
                 "leo-labs.dotnet",
-                "fernandoescolar.vscode-solution-explorer"
+                "fernandoescolar.vscode-solution-explorer",
+                "SonarSource.sonarlint-vscode"
             ]
         }
     },

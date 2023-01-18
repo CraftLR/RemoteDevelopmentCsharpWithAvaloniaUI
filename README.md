@@ -68,3 +68,69 @@ La fenêtre est bien visible et si vous interagissez avec les boutons, les messa
 Pour terminer l'application graphique, il suffit de la fermer normalement dans la session noVNC.
 
 
+### Construire, tester, exécuter
+
+Exécutez les commandes suivantes à partir du dossier contenant le fichier `.sln` afin de construire le code et de le tester :
+
+```sh
+dotnet build
+dotnet test
+```
+Pour lancer les test en continu sur le projet `App.Tests`, utilisez la commande suivante :
+
+```sh
+dotnet watch --project tests/CraftLR.App.Tests/CraftLR.App.Tests.csproj test
+```
+
+Pour connaitre la couverture du code par les tests, vous pouvez lancer les commandes suivantes :
+
+```sh
+cd tests/CraftLR.App.Tests/
+rm -r TestResults
+dotnet test --collect:"XPlat Code Coverage"
+GUID=`ls TestResults`
+reportgenerator -reports:./TestResults/$GUID/coverage.cobertura.xml -targetdir:"coveragereport" -reporttypes:Html
+```
+
+Ouvrir avec un navigateur le fichier `coveragereport/index.html` pour observer la converture du code par les tests. 
+
+
+### Appliquer les règles de formatage du code à l'ensemble de la solution
+La commande `dotnet format` est un formateur de code qui applique des préférences de style à un projet ou une solution. Les préférences seront lues à partir du fichier `.editorconfig`. Pour plus d'informations, consultez la documentation de [EditorConfig](https://editorconfig.org/).
+
+Pour formater l'intégralité de la solution courante, vous pouvez utiliser la commande suivante :
+```sh
+dotnet format
+```
+
+Pour seulement vérifier si le code est correctement formaté :
+```sh
+dotnet format --verify-no-changes
+```
+
+### Vérifier les métriques de code
+Pour s'assurer de bien maitriser la qualité de son code, il est nécessaire de pouvoir monitorer certaines métrique. [Metrix++](https://metrixplusplus.github.io/) est un outil extensible pour la collecte et l'analyse de métriques de code.
+
+Les commandes suivantes permettent de collecter les métriques et de les visualiser :
+
+- Collecter des métriques
+
+```
+metrix++ collect --std.code.complexity.cyclomatic --std.code.lines.code --std.code.todo.comments --std.code.maintindex.simple -- .
+```
+
+- Obtenez un aperçu
+```sh
+metrix++ view --db-file=./metrixpp.db
+```
+- Appliquer des seuils
+```sh
+metrix++ limit --db-file=./metrixpp.db --max-limit=std.code.complexity:cyclomatic:5 --max-limit=std.code.lines:code:25:function --max-limit=std.code.todo:comments:0 --max-limit=std.code.mi:simple:1
+```
+
+### Supprimer la duplication de code
+Pour détecter les duplications de code, vous pouvez utiliser l'outil CPD (Copy Paste Detector) du projet PMD Source Code Analyzer.
+La commande suivante permet de detecter et signaler les doublons dans l'ensemble des fichiers C# du dossier courant.
+```sh
+pmd cpd --minimum-tokens 100 --language cs --dir .
+```
