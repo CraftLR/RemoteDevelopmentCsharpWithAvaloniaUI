@@ -134,3 +134,7 @@ La commande suivante permet de detecter et signaler les doublons dans l'ensemble
 ```sh
 pmd cpd --minimum-tokens 100 --language cs --dir .
 ```
+### Maintenir la qualité de code
+Comme vous allez le découvrir, les projets sont configurés pour activer plusieurs outils permettant de détecter les mauvaises pratiques de code. Le premier `sonarlint` est capable de détecter automatiquement plusieurs centaines d'erreurs classiques. Il rajoutera dans la vue **Problèmes** les odeurs de code qu'il aura détecter. Certaines règles utilisé par cet outil peuvent ne pas être adaptées à la maturité de votre équipe et être désactivées dans le fichier `.editorconfig`.
+
+Le second outil pour maintenir la qualité de votre base de code est `StyleCop` qui vient en complément d'un linter pour vérifier et corriger des règles de style d'un projet. Les règles peuvent être configurées comme `sonarlint` directement dans le fichier `.editorconfig`.

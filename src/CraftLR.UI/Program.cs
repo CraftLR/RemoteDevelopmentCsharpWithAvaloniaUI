@@ -2,7 +2,7 @@
 
 namespace CraftLR.UI;
 
-static class Program
+public static class Program
 {
     public static void Main(string[] args) => BuildAvaloniaApp()
         .StartWithClassicDesktopLifetime(args);

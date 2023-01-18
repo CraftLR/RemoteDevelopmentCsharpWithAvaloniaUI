@@ -2,9 +2,9 @@ using System;
 
 namespace CraftLR.App;
 
-static class Program
+public static class Program
 {
-    static void Main()
+    public static void Main()
     {
         Console.WriteLine("Hello world !");
     }
