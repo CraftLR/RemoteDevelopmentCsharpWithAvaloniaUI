@@ -52,12 +52,28 @@
     },
     // Features to add to the dev container. More info: https://containers.dev/features.
     "features": {
-      "ghcr.io/devcontainers/features/sshd:1": {
-        "version": "latest"
-      }
+        "ghcr.io/devcontainers/features/sshd:1": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/desktop-lite:1": {
+            "password": "vscode",
+            "webPort": "6080",
+            "vncPort": "5901"
+        },
+        "ghcr.io/devcontainers/features/python:1": {},
+        "ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2": {}
     },
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    // "forwardPorts": [5000, 5001],
+    "forwardPorts": [
+        6080,
+        5901
+    ],
+    "postStartCommand": {
+        "pmd": "brew install pmd",
+        "coverlet": "dotnet tool install --global coverlet.console --configfile NuGet.Config",
+        "reportgenerator": "dotnet tool install --global dotnet-reportgenerator-globaltool --configfile NuGet.Config",
+        "metrixpp": "pip install metrixpp",
+    },
     // Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "dotnet restore",
     // Configure tool-specific properties.
@@ -66,18 +82,18 @@
         "vscode": {
             // Add the IDs of extensions you want installed when the container is created.
             "extensions": [
-				"ms-dotnettools.csharp",
-				"tintoy.msbuild-project-tools",
-				"formulahendry.dotnet-test-explorer",
-				"nikiforovall.surround-with-csharp",
-				"mhutchie.git-graph",
-				"codezombiech.gitignore",
-				"yzhang.markdown-all-in-one",
-				"dotjoshjohnson.xml",
-				"editorconfig.editorconfig",
-				"leo-labs.dotnet",
-				"fernandoescolar.vscode-solution-explorer"
-			]
+                "ms-dotnettools.csharp",
+                "tintoy.msbuild-project-tools",
+                "formulahendry.dotnet-test-explorer",
+                "nikiforovall.surround-with-csharp",
+                "mhutchie.git-graph",
+                "codezombiech.gitignore",
+                "yzhang.markdown-all-in-one",
+                "dotjoshjohnson.xml",
+                "editorconfig.editorconfig",
+                "leo-labs.dotnet",
+                "fernandoescolar.vscode-solution-explorer"
+            ]
         }
     },
     "remoteUser": "vscode"

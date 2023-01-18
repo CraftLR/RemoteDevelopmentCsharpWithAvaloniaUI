@@ -7,12 +7,15 @@ namespace CraftLR.UI;
 
 public partial class MainWindow : Window
 {
-    public MainWindow() {
+    public MainWindow()
+    {
         InitializeComponent();
     }
 
-    private void Button_OnClick(object sender, RoutedEventArgs e) {
-        if (sender is Button button) {
+    private void Button_OnClick(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button button)
+        {
             Console.Out.WriteLine($"Click on {button.Content}!");
         }
     }

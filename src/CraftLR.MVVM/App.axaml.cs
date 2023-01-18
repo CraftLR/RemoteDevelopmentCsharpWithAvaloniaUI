@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+
 using CraftLR.MVVM.ViewModels;
 using CraftLR.MVVM.Views;
 
