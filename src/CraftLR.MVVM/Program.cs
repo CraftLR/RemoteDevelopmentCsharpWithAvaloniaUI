@@ -5,7 +5,7 @@ using Avalonia.ReactiveUI;
 
 namespace CraftLR.MVVM;
 
-class Program
+static class Program
 {
     public static void Main(string[] args) => BuildAvaloniaApp()
         .StartWithClassicDesktopLifetime(args);
