@@ -12,7 +12,7 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    private void Button_OnClick(object sender, RoutedEventArgs e)
+    private void Button_OnClick(object sender, RoutedEventArgs eventData)
     {
         if (sender is Button button)
         {
