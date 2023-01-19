@@ -17,6 +17,7 @@
             }
         },
         "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.minimap.enabled": false,
         "files.associations": {
             "*.csproj": "msbuild",
             "*.fsproj": "msbuild",
@@ -61,7 +62,16 @@
             "vncPort": "5901"
         },
         "ghcr.io/devcontainers/features/python:1": {},
-        "ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2": {}
+        "ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2": {},
+        // Install common utilities
+        "ghcr.io/devcontainers/features/common-utils:1": {
+            "installZsh": true,
+            "installOhMyZsh": true,
+            "upgradePackages": true,
+            "username": "vscode",
+            "uid": "1000",
+            "gid": "1000"
+        }
     },
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     "forwardPorts": [
@@ -69,10 +79,7 @@
         5901
     ],
     "postCreateCommand": {
-        "pmd": "brew install pmd",
-        "coverlet": "dotnet tool install --global coverlet.console --configfile NuGet.Config",
-        "reportgenerator": "dotnet tool install --global dotnet-reportgenerator-globaltool --configfile NuGet.Config",
-        "metrixpp": "pip install metrixpp"
+        "post-create-script": "/usr/bin/zsh ./.devcontainer/post-create.sh"
     },
     // Use 'postCreateCommand' to run commands after the container is created.
     "postStartCommand": "dotnet restore",

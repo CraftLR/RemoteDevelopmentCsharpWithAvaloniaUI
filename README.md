@@ -13,7 +13,7 @@
 
 ## Aperçu du tutoriel et objectifs d'apprentissage
 
-Commencer à écrire du code demande souvent de disposer d'un environnement de développement particulier avec des contraintes bien spécifique concernant les logiciels disponibles ainsi que leurs versions. Développer avec un environnement assez portable pour ne plus avoir à se préoccuper ni de la machine que l'on utilise ni de sa configuration permet de gagner un temps précieux et de se concentrer sur l'essentiel, c'est-à-dire produire le code qui répondra au mieux aux besoins de l'utilisateur. 
+Commencer à écrire du code demande souvent de disposer d'un environnement de développement particulier avec des contraintes bien spécifique concernant les logiciels disponibles ainsi que leurs versions. Développer avec un environnement assez portable pour ne plus avoir à se préoccuper ni de la machine que l'on utilise ni de sa configuration permet de gagner un temps précieux et de se concentrer sur l'essentiel, c'est-à-dire produire le code qui répondra au mieux aux besoins de l'utilisateur.
 
 Avec la démocratisation des conteneurs et leur meilleure intégration dans les différents outils, il est maintenant possible de disposer de tels environnements de développement assez facilement. L'objectif de ce tutoriel est de vous faire découvrir comment mettre en place ces conteneurs de développement et surtout comment les utiliser de manière quasi-transparente avec un IDE.
 
@@ -27,7 +27,7 @@ Ce dépôt contient la configuration minimale nécessaire pour créer un projet 
 
 Un conteneur de développement permet d'abstraire les dépendances et les outils d'un projet via l'utilisation de [Docker](https://www.docker.com/). Le pack d'extension [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) de VS Code permet à l'IDE d'interagir directement avec le conteneur. Cela réduit considérablement le temps de démarrage d'un nouveau développeur, tout en réduisant le risque d'installations incorrectes ou de blocage lors de l'installation.
 
-Un conteneur de développement est défini par un fichier `devcontainer.json` qui doit se trouver dans le dossier `.devcontainer` à la racine du projet. Dans ce fichier, sont définis les services requis, ainsi que la configuration spécifique de l'application. Une fois le conteneur construit, VS Code peut travailler directement à l'intérieur du conteneur, comme si vous développiez localement. 
+Un conteneur de développement est défini par un fichier `devcontainer.json` qui doit se trouver dans le dossier `.devcontainer` à la racine du projet. Dans ce fichier, sont définis les services requis, ainsi que la configuration spécifique de l'application. Une fois le conteneur construit, VS Code peut travailler directement à l'intérieur du conteneur, comme si vous développiez localement.
 
 Il y a beaucoup à savoir sur les Dev Container, mais le moyen le plus simple de démarrer est de tester sur un projet déjà configuré.
 
@@ -38,15 +38,18 @@ La première chose à faire est de créer un fork de ce dépôt. Pour ce faire, 
 GitHub va vous créer un dépôt contenant un fork de ce dépôt. Vous apparaîtrez automatiquement comme contributeur de ce projet pour y pousser votre travail. Clonez localement votre fork et ouvrez le avec Visual Studio Code.
 
 ### Lancement de l'application graphique d'exemple
+
 Pour commencer à tester AvaloniaUI, deux applications très simples sont présente dans le présent dépôt git. La première est juste une fenêtre avec 3 boutons pour illustrer les concepts de base d'AvaloniaUI. Elle s'appelle `CraftLR.UI` et se trouve dans le dossier `src/CraftLR.UI`.
 
-Pour pouvoir la tester, ouvrir un terminal (avec le raccourci clavier  <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>²</kbd>) et tapez les commandes suivantes : 
+Pour pouvoir la tester, ouvrir un terminal (avec le raccourci clavier  <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>²</kbd>) et tapez les commandes suivantes :
+
 ```sh
 cd src/CraftLR.UI
 dotnet restore
 dotnet build
 dotnet run
 ```
+
 Les deux premières commandes préparent le projet et le compile. La dernière permet de l'executer. Le programme étant graphique, la commande vous rendra la main que lorsque vous aurez fermer la fenêtre. Actuellement, la fenêtre est lancée dans le conteneur, pour la voir, il faut pouvoir accéder à l'environnement graphique. Dans la prochaine étape vous allez découvrir comment voir la fenêtre de l'application graphique.
 
 ### Connexion au bureau du conteneur
@@ -59,14 +62,13 @@ Si votre application graphique utilise la console, les messages s'afficheront di
 
 Si vous avez lancé la commande `dotnet run` dans le dossier du projet `CraftLR.UI`, vous devriez avoir l'affichage suivant :
 
-![](src/resources/assets/vue_fluxbox_novnc.png)
+![vue_fluxbox_novnc](src/resources/assets/vue_fluxbox_novnc.png)
 
 La fenêtre est bien visible et si vous interagissez avec les boutons, les messages s'affichent bien dans le terminal dans lequel le programme a été lancé :
 
-![](src/resources/assets/vue_terminal_programme_exemple.png)
+![vue_terminal_programme_exemple](src/resources/assets/vue_terminal_programme_exemple.png)
 
 Pour terminer l'application graphique, il suffit de la fermer normalement dans la session noVNC.
-
 
 ### Construire, tester, exécuter
 
@@ -76,6 +78,7 @@ Exécutez les commandes suivantes à partir du dossier contenant le fichier `.sl
 dotnet build
 dotnet test
 ```
+
 Pour lancer les test en continu sur le projet `App.Tests`, utilisez la commande suivante :
 
 ```sh
@@ -92,49 +95,66 @@ GUID=`ls TestResults`
 reportgenerator -reports:./TestResults/$GUID/coverage.cobertura.xml -targetdir:"coveragereport" -reporttypes:Html
 ```
 
-Ouvrir avec un navigateur le fichier `coveragereport/index.html` pour observer la converture du code par les tests. 
-
+Ouvrir avec un navigateur le fichier `coveragereport/index.html` pour observer la converture du code par les tests.
 
 ### Appliquer les règles de formatage du code à l'ensemble de la solution
+
 La commande `dotnet format` est un formateur de code qui applique des préférences de style à un projet ou une solution. Les préférences seront lues à partir du fichier `.editorconfig`. Pour plus d'informations, consultez la documentation de [EditorConfig](https://editorconfig.org/).
 
 Pour formater l'intégralité de la solution courante, vous pouvez utiliser la commande suivante :
+
 ```sh
 dotnet format
 ```
 
 Pour seulement vérifier si le code est correctement formaté :
+
 ```sh
 dotnet format --verify-no-changes
 ```
 
 ### Vérifier les métriques de code
+
 Pour s'assurer de bien maitriser la qualité de son code, il est nécessaire de pouvoir monitorer certaines métrique. [Metrix++](https://metrixplusplus.github.io/) est un outil extensible pour la collecte et l'analyse de métriques de code.
 
 Les commandes suivantes permettent de collecter les métriques et de les visualiser :
 
-- Collecter des métriques
+* Collecter des métriques
 
-```
+```sh
 metrix++ collect --std.code.complexity.cyclomatic --std.code.lines.code --std.code.todo.comments --std.code.maintindex.simple -- .
 ```
 
-- Obtenez un aperçu
+* Obtenez un aperçu
+  
 ```sh
 metrix++ view --db-file=./metrixpp.db
 ```
-- Appliquer des seuils
+
+* Appliquer des seuils
+
 ```sh
 metrix++ limit --db-file=./metrixpp.db --max-limit=std.code.complexity:cyclomatic:5 --max-limit=std.code.lines:code:25:function --max-limit=std.code.todo:comments:0 --max-limit=std.code.mi:simple:1
 ```
 
 ### Supprimer la duplication de code
+
 Pour détecter les duplications de code, vous pouvez utiliser l'outil CPD (Copy Paste Detector) du projet PMD Source Code Analyzer.
+
+Pour installer pmd, vous pouvez utiliser homebrew avec la commande suivante :
+
+```sh
+brew install pmd
+```
+
 La commande suivante permet de detecter et signaler les doublons dans l'ensemble des fichiers C# du dossier courant.
+
 ```sh
 pmd cpd --minimum-tokens 100 --language cs --dir .
 ```
+
 ### Maintenir la qualité de code
+
 Comme vous allez le découvrir, les projets sont configurés pour activer plusieurs outils permettant de détecter les mauvaises pratiques de code. Le premier `sonarlint` est capable de détecter automatiquement plusieurs centaines d'erreurs classiques. Il rajoutera dans la vue **Problèmes** les odeurs de code qu'il aura détecter. Certaines règles utilisé par cet outil peuvent ne pas être adaptées à la maturité de votre équipe et être désactivées dans le fichier `.editorconfig`.
 
 Le second outil pour maintenir la qualité de votre base de code est `StyleCop` qui vient en complément d'un linter pour vérifier et corriger des règles de style d'un projet. Les règles peuvent être configurées comme `sonarlint` directement dans le fichier `.editorconfig`.
